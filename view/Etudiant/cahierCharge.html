@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soumission Cahier de Charge</title>
+    <style>
+        .soumission-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 80vh;
+          padding: 20px;
+          background-color: #f2f6fc;
+        }
+      
+        .soumission-form {
+          background-color: #fff;
+          padding: 30px;
+          border-radius: 15px;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          width: 100%;
+          max-width: 500px;
+        }
+        .soumission-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007BFF;
+  }
+
+  .soumission-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .soumission-form input[type="text"],
+  .soumission-form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+
+  .soumission-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .soumission-form button:hover {
+    background-color: #0056b3;
+  }
+</style>
+</head>
+<body>
+    <div class="soumission-wrapper">
+        <form class="soumission-form" action="#" method="post" enctype="multipart/form-data">
+          <h2>Formulaire de Soumission</h2>
+      
+          <label for="nom">Nom du Binôme</label>
+          <input type="text" id="nom" name="nom" placeholder="Nom" required>
+      
+          <label for="prenom">Prénom du Binôme</label>
+          <input type="text" id="prenom" name="prenom" placeholder="Prénom" required>
+      
+          <label for="myfile">Cahier de charge</label>
+          <input type="file" id="myfile" name="myfile" required>
+      
+          <button type="submit">Soumettre</button>
+        </form>
+      </div>
+      
+</body>
+</html>

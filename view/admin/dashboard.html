@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Admin</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar h2 {
+      margin-top: 0;
+      font-size: 24px;
+      border-bottom: 1px solid #fff;
+      padding-bottom: 10px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 12px 0;
+      padding: 8px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .main-content {
+      margin-left: 270px;
+      padding: 30px;
+      flex-grow: 1;
+    }
+
+    .content-box {
+      background-color: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Admin Dashboard</h2>
+    <a href="#" onclick="loadContent('accueil')">Accueil</a> <!-- Ajout du lien pour Accueil -->
+    <a href="#" onclick="loadContent('/view/admin/etudiant.html')">Étudiants</a>
+    <a href="#" onclick="loadContent('/view/admin/Enseignant/afficher.html')">Enseignants</a>
+    <a href="#" onclick="loadContent('/view/admin/Liaison/afficherLiaison.html')">Relation</a>
+  </div>
+
+  <div class="main-content">
+    <div id="content-area" class="content-box">
+    </div>
+  </div>
+
+  <script>
+    function loadContent(url, updateHash = true) {
+      const contentArea = document.getElementById('content-area');
+
+      if (!url || url === 'accueil') {
+        contentArea.innerHTML = `
+          <h1>Bienvenue dans le Dashboard</h1>
+          <p>Utilisez le menu à gauche pour naviguer entre les différentes options.</p>
+        `;
+        if (updateHash) window.location.hash = 'accueil';
+        return;
+      }
+
+      fetch(url)
+        .then(response => {
+          if (!response.ok) throw new Error("Cette page est introuvable!!!");
+          return response.text();
+        })
+        .then(html => {
+          contentArea.innerHTML = html;
+          if (updateHash) window.location.hash = url;
+        })
+        .catch(err => {
+          contentArea.innerHTML = `<p style="color:red;">Erreur : ${err.message}</p>`;
+        });
+    }
+
+    window.addEventListener('load', () => {
+      const hash = window.location.hash.replace('#', '');
+      loadContent(hash || 'accueil', false);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modifier un Enseignant</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f9;
+    }
+
+    .content-box {
+      background-color: #eaf1f4;
+      padding: 25px;
+      border-radius: 8px;
+      max-width: 500px;
+      margin: 0 auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #2980b9;
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #34495e;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 15px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #27ae60;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #219150;
+    }
+
+    .confirmation {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content-box">
+    <h1>Modifier un Enseignant</h1>
+    <form id="edit-teacher-form">
+      
+      <label for="edit-teacher-name">Nom:</label>
+      <input type="text" id="edit-teacher-name" name="edit-teacher-name" required>
+
+      <label for="edit-teacher-name">Prenom:</label>
+      <input type="text" id="edit-prenom" name="edit-prenom" required>
+      
+      <button type="submit">Mettre à jours</button>
+    </form>
+
+  </div>
+
+
+</body>
+</html>

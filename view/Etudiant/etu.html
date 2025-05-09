@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f8fa;
+      margin: 0;
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #007BFF;
+      color: white;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 30px;
+    }
+
+    .profile {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    .content-box {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logout {
+      margin-top: auto;
+      font-size: 14px;
+      cursor: pointer;
+      color: #ffdddd;
+    }
+
+    .logout:hover {
+      text-decoration: underline;
+    }
+
+    /* Styles du formulaire */
+    form {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #007BFF;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="profile">
+      <p>Nom d'utilisateur</p>
+    </div>
+    <a onclick="loadContent('accueil')">Accueil</a> <!-- Ajout du bouton Accueil -->
+    <a onclick="loadContent('/view/Etudiant/cahierCharge.html')">Soumettre Cahier</a>
+    <a onclick="loadContent('/view/Etudiant/consulter.html')">Consulter</a>
+    <div class="logout" onclick="alert('Déconnexion...')">Déconnexion</div>
+  </div>
+
+  <div class="main-content">
+    <div class="content-box" id="content-area">
+      <h1>Bienvenue</h1>
+      <p>Utilisez le menu pour naviguer dans la plateforme.</p>
+    </div>
+  </div>
+
+  <script>
+    // Fonction pour charger le contenu dans la zone principale
+    function loadContent(url, updateHash = true) {
+      const contentArea = document.getElementById('content-area');
+
+      if (url === 'accueil' || url === '') {
+        contentArea.innerHTML = `
+          <h1>Bienvenue dans votre Dashboard</h1>
+          <p>Utilisez le menu à gauche pour naviguer entre les différentes options. Vous pouvez soumettre votre cahier de charge ou consulter d'autres informations.</p>
+        `;
+        if (updateHash) window.location.hash = 'accueil'; // Garder l'URL à jour
+      } else {
+        fetch(url)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error("Fichier non trouvé");
+            }
+            return response.text();
+          })
+          .then(data => {
+            contentArea.innerHTML = data;
+            if (updateHash) {
+              window.location.hash = url;
+            }
+          })
+          .catch(error => {
+            contentArea.innerHTML = `<p style="color:red;">Erreur lors du chargement : ${error.message}</p>`;
+          });
+      }
+    }
+
+    // Charger la page d'accueil par défaut lors du premier chargement
+    window.addEventListener('load', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (!hash) {
+        loadContent('accueil', false); // Si aucun hash, afficher la page d'accueil
+      } else {
+        loadContent(hash, false);
+      }
+    });
+  </script>
+</body>
+</html>

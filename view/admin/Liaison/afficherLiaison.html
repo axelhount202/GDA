@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lier Étudiant et Enseignant</title>
+  <style>
+    h1 {
+      color: #007BFF;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f0f0f0;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-create {
+      background-color: #28a745;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .btn-edit {
+      background-color: #ffc107;
+      color: white;
+    }
+
+    .btn-delete {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .btn-create:hover {
+      background-color: #218838;
+    }
+
+    .btn-edit:hover {
+      background-color: #e0a800;
+    }
+
+    .btn-delete:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Lier Étudiant et Enseignant</h1>
+
+  <!-- Bouton pour créer une nouvelle relation -->
+  <button class="btn btn-create" onclick="loadContent('/view/admin/Liaison/createLiaison.html')">Créer une relation</button>
+
+  <!-- Tableau des relations existantes -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID Étudiant</th>
+        <th>Nom Étudiant</th>
+        <th>ID Enseignant</th>
+        <th>Nom Enseignant</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Exemple statique. Remplacez cela par un contenu dynamique via backend -->
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <button class="btn btn-edit" onclick="loadContent('/view/admin/Liaison/modifierLiaison.html?id=1')">Modifier</button>
+          <button class="btn btn-delete" onclick="deleteLiaison(1)">Supprimer</button>
+        </td>
+      </tr>
+      <!-- Répéter pour chaque relation -->
+    </tbody>
+  </table>
+
+  <script>
+    // Fonction pour charger un contenu dynamique (comme créer ou modifier une relation)
+    function loadContent(url) {
+      // Utilise ta méthode pour charger le contenu dans la page
+      console.log("Chargement du contenu : " + url);
+    }
+
+    // Fonction pour supprimer une liaison
+    function deleteLiaison(id) {
+      if (confirm("Voulez-vous vraiment supprimer cette relation ?")) {
+        // Implémentez la logique pour supprimer la liaison (via backend ou autre)
+        alert("La relation " + id + " a été supprimée.");
+        // À remplacer par une logique de suppression réelle
+      }
+    }
+  </script>
+
+</body>
+</html>
