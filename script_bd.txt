@@ -1,0 +1,57 @@
+CREATE DATABASE gda;
+
+USE gda;
+
+-- Table Utilisateurs
+CREATE TABLE Utilisateurs (
+ ID INT AUTO_INCREMENT PRIMARY KEY,
+ Nom VARCHAR(100) NOT NULL,
+ Prenom VARCHAR(100) NOT NULL,
+ Email VARCHAR(150) NOT NULL UNIQUE,
+ Mot_de_passe VARCHAR(255) NOT NULL,
+ Filiere ENUM('AL', 'SI', 'SRC') DEFAULT NULL,
+ Role ENUM('etudiant', 'admin') NOT NULL,
+ Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+CHECK (
+    (Role = 'etudiant' AND Filiere IS NOT NULL) OR 
+    (Role = 'admin' AND Filiere IS NULL)
+)
+);
+-- Table Professeurs
+CREATE TABLE Professeurs (
+ ID INT AUTO_INCREMENT PRIMARY KEY,
+ Nom VARCHAR(100) NOT NULL,
+ Prenom VARCHAR(100) NOT NULL,
+ Competence ENUM('AL', 'SI', 'SRC', 'AL-SI', 'AL-SRC', 'SI-SRC', 'AL-SI-SRC') NOT NULL,
+ Telephone VARCHAR(20) NOT NULL,
+ Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+-- Table Cahiers
+CREATE TABLE Cahiers (
+ ID INT AUTO_INCREMENT PRIMARY KEY,
+ Nom_binome VARCHAR(100) NOT NULL,
+ Prenom_binome VARCHAR(100) NOT NULL,
+ Filiere_binome ENUM('AL', 'SI', 'SRC') NOT NULL,
+ Id_Utilisateur INT NOT NULL,
+ Intitule VARCHAR(200) NOT NULL,
+ Domaine ENUM('AL', 'SI', 'SRC', 'AL-SI', 'AL-SRC', 'SI-SRC') NOT NULL,
+ Chemin_PDF VARCHAR(255) NOT NULL,
+ Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY (Id_Utilisateur) REFERENCES Utilisateurs(ID) ON DELETE CASCADE
+);
+-- Table Affectations
+CREATE TABLE Affectations (
+ Id_Cahier INT NOT NULL,
+ Id_Professeur INT NOT NULL,
+ Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY (Id_Cahier, Id_Professeur),
+ FOREIGN KEY (Id_Cahier) REFERENCES Cahiers(ID) ON DELETE CASCADE,
+ FOREIGN KEY (Id_Professeur) REFERENCES Professeurs(ID) ON DELETE CASCADE
+);
+-- Table Relances
+CREATE TABLE Relances (
+ ID INT AUTO_INCREMENT PRIMARY KEY,
+ Id_Cahier INT NOT NULL,
+ Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY (Id_Cahier) REFERENCES Cahiers(ID) ON DELETE CASCADE
+);
