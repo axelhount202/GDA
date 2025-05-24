@@ -1,0 +1,113 @@
+-- Table Utilisateurs
+CREATE TABLE Utilisateurs (
+ ID INT AUTO_INCREMENT PRIMARY KEY,
+ Nom VARCHAR(100) NOT NULL,
+ Prenom VARCHAR(100) NOT NULL,
+ Email VARCHAR(150) NOT NULL UNIQUE,
+ Mot_de_passe VARCHAR(255) NOT NULL,
+ Filiere ENUM('AL', 'SI', 'SRC') DEFAULT NULL,
+ Role ENUM('etudiant', 'admin') NOT NULL,
+ Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+CHECK (
+    (Role = 'etudiant' AND Filiere IS NOT NULL) OR 
+    (Role = 'admin' AND Filiere IS NULL)
+)
+);
+-- Table Professeurs
+CREATE TABLE Professeurs (
+ ID INT AUTO_INCREMENT PRIMARY KEY,
+ Nom VARCHAR(100) NOT NULL,
+ Prenom VARCHAR(100) NOT NULL,
+ Competence ENUM('AL', 'SI', 'SRC', 'AL-SI', 'AL-SRC', 'SI-SRC', 'AL-SI-SRC') NOT NULL,
+ Telephone VARCHAR(20) NOT NULL,
+ Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+-- Table Cahiers
+CREATE TABLE Cahiers (
+ ID INT AUTO_INCREMENT PRIMARY KEY,
+ Nom_binome VARCHAR(100) NOT NULL,
+ Prenom_binome VARCHAR(100) NOT NULL,
+ Filiere_binome ENUM('AL', 'SI', 'SRC') NOT NULL,
+ Id_Utilisateur INT NOT NULL,
+ Intitule VARCHAR(200) NOT NULL,
+ Domaine ENUM('AL', 'SI', 'SRC', 'AL-SI', 'AL-SRC', 'SI-SRC') NOT NULL,
+ Chemin_PDF VARCHAR(255) NOT NULL,
+ Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY (Id_Utilisateur) REFERENCES Utilisateurs(ID) ON DELETE CASCADE
+);
+-- Table Affectations
+CREATE TABLE Affectations (
+ Id_Cahier INT NOT NULL,
+ Id_Professeur INT NOT NULL,
+ Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY (Id_Cahier, Id_Professeur),
+ FOREIGN KEY (Id_Cahier) REFERENCES Cahiers(ID) ON DELETE CASCADE,
+ FOREIGN KEY (Id_Professeur) REFERENCES Professeurs(ID) ON DELETE CASCADE
+);
+-- Table Relance
+CREATE TABLE Relance (
+ ID INT AUTO_INCREMENT PRIMARY KEY,
+ Id_Cahier INT NOT NULL,
+ Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY (Id_Cahier) REFERENCES Cahiers(ID) ON DELETE CASCADE
+);
+
+<main>
+    <nav>
+        <h1>Dashboard Administrateur</h1>
+        <ul>                
+            <li style="margin-bottom: 24px"><a href="">Dashborad</a></li>
+            <li><a href="">-</a></li>
+        </ul>
+    </nav>
+
+    <h2>Affecter un cahier</h2><br>
+    <form action="/admin/affectation" method="POST">
+        <div class="row">
+            <div>
+                <h3>Cahiers Non Affectés</h3>
+                <select name="cahier_id">
+                    <?php foreach ($afficher_cahiers as $cahier): ?>
+                        <option value = "<?= htmlspecialchars($cahier['ID']); ?>">
+                            <?= htmlspecialchars(strlen($cahier['Intitule']) > 40 ? substr($cahier['Intitule'], 0, 40) . '...' : $cahier['Intitule']); ?> ( <?= htmlspecialchars($cahier['Domaine']); ?> )
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div>
+                <h3>Professeurs Non Affectés</h3>
+                <select name="professeur_id">
+                    <?php foreach ($afficher_professeurs as $professeur): ?>
+                        <option value="<?= htmlspecialchars($professeur['ID']); ?>"><?= htmlspecialchars($professeur['Prenom'] . " " . $professeur['Nom']) ?> ( <?= htmlspecialchars($professeur['Competence']); ?> )</option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+        <button type="submit">Faire une Affectation</button>
+    </form>
+
+    <!-- Affichage du message suite à une tentative d'affectation -->
+    <?php if (isset($_SESSION['message']) && !empty($_SESSION['message'])): ?>
+        <div class="alert <?= $_SESSION['message']['type']; ?> mt-3">
+            <?= htmlspecialchars($_SESSION['message']['message']); unset($_SESSION['message']); ?>
+        </div>
+    <?php endif; ?><br>
+
+    <h2>Relances des Étudiants</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Intitule Cahier</th>
+                <th>Date de Relance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($afficher_relances as $relance): ?>
+                <tr>
+                    <td><?= htmlspecialchars($relance['Intitule']); ?></td>
+                    <td><?= htmlspecialchars($relance['Created_at']); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</main>
