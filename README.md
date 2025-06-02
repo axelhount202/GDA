@@ -27,7 +27,7 @@ Dans un navigateur web, se rendre à l'adresse :  `http://localhost:8000`
 
 À la racine du projet se trouve un fichier **`gda.sql`** pour importer la base de données dans Mysql.
 
-Créez votre fichier .env à partir du fichier .env.example.
+IMPORTANT!! : créez votre fichier .env à partir du fichier .env.example.
 
 ## Contributeurs
 
