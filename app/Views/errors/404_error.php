@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>404 - Page</title>
+<title>404 - Page Non Trouvée</title>
 <style>
   body {
     margin: 0; 
-    font-family: 'Segoe UI', Tahoma;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f3f3f3;
     color: #333;
     display: flex;
@@ -38,16 +38,17 @@
     padding: 0.75rem 1.5rem;
     border-radius: 0.3rem;
     font-weight: 600;
+    transition: background-color 0.3s ease;
   }
   a:hover {
-    background-color: #004ad4;
+    background-color: #0045e0;
   }
 </style>
 </head>
 <body>
   <h1>404</h1>
-  <h2>Page non trouvée!</h2>
-  <p>La page que vous cherchez n'existe pas ou a été déplacée.</p>
-  <a href="/">Retour à l'accueil</a>
+  <h2>Oups! Cette page n'existe pas.</h2>
+  <p>La page que vous recherchez a peut-être été supprimée, renommée ou n'a jamais existé.</p>
+  <a href="/">Retour à la page d'accueil</a>
 </body>
 </html>

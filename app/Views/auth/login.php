@@ -7,71 +7,64 @@
   <link rel="icon" type="image/x-icon" href="/src/favicon/favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Réinitialisation de base */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    /* Style du corps de la page */
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #e9ecef; /* Un arrière-plan très léger */
+      background-color: #e9ecef;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      color: #343a40; /* Couleur de texte sombre */
+      color: #343a40;
     }
 
-    /* Conteneur principal */
     main {
       width: 100%;
-      max-width: 380px; /* Largeur légèrement réduite */
+      max-width: 380px;
       padding: 15px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    /* Style du formulaire */
     form {
       background-color: #ffffff;
-      padding: 25px; /* Moins de padding */
-      border-radius: 8px; /* Coins légèrement moins arrondis */
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Ombre plus légère */
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
       width: 100%;
       display: flex;
       flex-direction: column;
     }
 
-    /* Style du titre */
     h1 {
       text-align: center;
-      margin-bottom: 20px; /* Espacement réduit */
-      color: #007bff; /* Bleu primaire */
+      margin-bottom: 20px;
+      color: #007bff;
       font-weight: 600;
-      font-size: 2em; /* Taille de police du titre */
+      font-size: 2em;
     }
 
-    /* Style des labels */
     label {
       display: block;
-      margin-bottom: 5px; /* Espacement réduit */
+      margin-bottom: 5px;
       font-weight: 500;
       color: #495057;
     }
 
-    /* Style des champs de saisie */
     input[type="email"],
     input[type="password"] {
       width: 100%;
-      padding: 10px; /* Moins de padding */
-      margin-bottom: 15px; /* Espacement réduit */
-      border: 1px solid #ced4da; /* Bordure simple */
-      border-radius: 5px; /* Coins légèrement arrondis */
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
       font-size: 0.95rem;
       transition: border-color 0.2s ease;
     }
@@ -80,10 +73,9 @@
     input[type="password"]:focus {
       border-color: #007bff;
       outline: none;
-      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Ombre légère au focus */
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
     }
 
-    /* Style du bouton */
     button[type="submit"] {
       background-color: #007bff;
       color: white;
@@ -101,10 +93,9 @@
       background-color: #0056b3;
     }
 
-    /* Style de la section lien */
     .link {
       text-align: center;
-      margin-top: 15px; /* Espacement réduit */
+      margin-top: 15px;
       font-size: 0.9rem;
     }
 
@@ -123,7 +114,6 @@
       text-decoration: underline;
     }
 
-    /* Style des messages d'alerte */
     .alert {
       padding: 10px;
       margin-bottom: 15px;
@@ -146,16 +136,14 @@
       border-color: #f5c6cb;
     }
 
-    /* Style du pied de page */
     footer {
-      margin-top: 25px; /* Espacement réduit */
+      margin-top: 25px;
       padding: 10px;
       text-align: center;
       color: #888;
       font-size: 0.85rem;
     }
 
-    /* Ajustements responsifs */
     @media (max-width: 480px) {
       form {
         padding: 20px;

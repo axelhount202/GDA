@@ -1,33 +1,33 @@
 <?php include __DIR__ . '/../layouts/adminHeader.php'; ?>
 
-<main class="flex min-h-screen bg-gray-100">
-    <nav class="w-64 bg-gray-800 text-white p-4">
-        <ul class="space-y-2">                
-            <li><a href="/admin" class="block py-2 px-4 rounded hover:bg-gray-700">Dashboard</a></li>
-            <li><a href="/admin/affectations" class="block py-2 px-4 rounded hover:bg-gray-700">Affectations</a></li>
-            <li><a href="/admin/professeurs" class="block py-2 px-4 rounded hover:bg-gray-700">Professeurs</a></li>
-            <form action="/logout" method="POST" class="pt-4">
-                <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Déconnexion</button>
+<main style="display: flex; min-height: 100vh; background-color: #f3f4f6;">
+    <nav style="width: 16rem; background-color: #1f2937; color: white; padding: 1rem;">
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">                
+            <li><a href="/admin" style="display: block; padding: 0.5rem 1rem; border-radius: 0.25rem; text-decoration: none; color: inherit; transition: background-color 0.2s ease-in-out;">Dashboard</a></li>
+            <li><a href="/admin/affectations" style="display: block; padding: 0.5rem 1rem; border-radius: 0.25rem; text-decoration: none; color: inherit; transition: background-color 0.2s ease-in-out;">Affectations</a></li>
+            <li><a href="/admin/professeurs" style="display: block; padding: 0.5rem 1rem; border-radius: 0.25rem; text-decoration: none; color: inherit; transition: background-color 0.2s ease-in-out;">Professeurs</a></li>
+            <form action="/logout" method="POST" style="padding-top: 1rem;">
+                <button type="submit" style="width: 100%; background-color: #dc2626; color: white; font-weight: bold; padding: 0.5rem 1rem; border-radius: 0.25rem; border: none; cursor: pointer; transition: background-color 0.2s ease-in-out;">Déconnexion</button>
             </form>
         </ul>
     </nav>
-    <div class="flex-1 p-8">
-        <h1 class="text-3xl font-bold mb-6 text-gray-800">Dashboard Administrateur</h1>
-        <h2 class="text-2xl font-bold mb-4 text-gray-800">Mise à jour professeur</h2>
-        <form action="/admin/professeurs/modifier" method="POST" class="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto">
-          <div class="mb-4">
-            <label for="lastname" class="block text-gray-700 text-sm font-bold mb-2">Nom</label>
-            <input type="text" name="lastname" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    <div style="flex: 1; padding: 2rem;">
+        <h1 style="font-size: 2.25rem; font-weight: bold; margin-bottom: 1.5rem; color: #1f2937;">Dashboard Administrateur</h1>
+        <h2 style="font-size: 1.875rem; font-weight: bold; margin-bottom: 1rem; color: #1f2937;">Mise à jour professeur</h2>
+        <form action="/admin/professeurs/modifier" method="POST" style="background-color: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 0.5rem; padding: 1.5rem; max-width: 28rem; margin-left: auto; margin-right: auto;">
+          <div style="margin-bottom: 1rem;">
+            <label for="lastname" style="display: block; color: #374151; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Nom</label>
+            <input type="text" name="lastname" required style="box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); appearance: none; border: 1px solid #d1d5db; border-radius: 0.25rem; width: 100%; padding: 0.5rem 0.75rem; color: #374151; line-height: 1.25; outline: none; transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;">
           </div>
 
-          <div class="mb-4">
-            <label for="surname" class="block text-gray-700 text-sm font-bold mb-2">Prénom</label>
-            <input type="text" name="surname" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <div style="margin-bottom: 1rem;">
+            <label for="surname" style="display: block; color: #374151; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Prénom</label>
+            <input type="text" name="surname" required style="box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); appearance: none; border: 1px solid #d1d5db; border-radius: 0.25rem; width: 100%; padding: 0.5rem 0.75rem; color: #374151; line-height: 1.25; outline: none; transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;">
           </div>
 
-          <div class="mb-4">
-            <label for="field" class="block text-gray-700 text-sm font-bold mb-2">Compétence(s)</label>
-            <select name="field" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+          <div style="margin-bottom: 1rem;">
+            <label for="field" style="display: block; color: #374151; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Compétence(s)</label>
+            <select name="field" style="display: block; appearance: none; width: 100%; background-color: white; border: 1px solid #9ca3af; padding: 0.5rem 1rem; border-radius: 0.25rem; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); line-height: 1.25; outline: none; transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;">
               <option value="AL">AL</option>
               <option value="SI">SI</option>
               <option value="SRC">SRC</option>
@@ -38,9 +38,9 @@
             </select>
           </div>
 
-          <div class="mb-6">
-            <label for="phone_number" class="block text-gray-700 text-sm font-bold mb-2">Téléphone</label>
-            <input type="tel" name="phone_number" pattern="[0-9]+" placeholder="Ex: 0199999999" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <div style="margin-bottom: 1.5rem;">
+            <label for="phone_number" style="display: block; color: #374151; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Téléphone</label>
+            <input type="tel" name="phone_number" pattern="[0-9]+" placeholder="Ex: 0199999999" required style="box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); appearance: none; border: 1px solid #d1d5db; border-radius: 0.25rem; width: 100%; padding: 0.5rem 0.75rem; color: #374151; line-height: 1.25; outline: none; transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;">
           </div>
 
           <?php if (isset($_GET['professeur_id'])): ?>
@@ -51,14 +51,13 @@
           <input type="hidden" name="professeur_id" value="<?= htmlspecialchars($professeur_id) ?>">
 
           <?php if (isset($_SESSION['message']) && !empty($_SESSION['message'])): ?>
-            <div class="alert mb-4 p-3 rounded-md 
-                <?php echo ($_SESSION['message']['type'] == 'success') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'; ?>">
+            <div style="margin-bottom: 1rem; padding: 0.75rem; border-radius: 0.375rem; 
+                <?php echo ($_SESSION['message']['type'] == 'success') ? 'background-color: #d1fae5; color: #065f46;' : 'background-color: #fee2e2; color: #991b1b;'; ?>">
               <?= htmlspecialchars($_SESSION['message']['message']); unset($_SESSION['message']); ?>
             </div>
           <?php endif; ?>
 
-          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Mettre à jour</button>
+          <button type="submit" style="background-color: #2563eb; color: white; font-weight: bold; padding: 0.5rem 1rem; border-radius: 0.25rem; border: none; cursor: pointer; transition: background-color 0.2s ease-in-out;">Mettre à jour</button>
         </form>
     </div>
 </main>
-

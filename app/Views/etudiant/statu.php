@@ -1,33 +1,33 @@
 <?php require __DIR__ . '/../layouts/etuHeader.php'; ?>
 
-<div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl mx-auto">
-        <h1 class="text-3xl font-bold text-gray-800 text-center mb-6 pb-4 border-b-2 border-gray-200">Statut du cahier</h1>
+<div style="background-color: white; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); border-radius: 0.5rem; padding: 2rem; width: 100%; max-width: 42rem; margin-left: auto; margin-right: auto;">
+        <h1 style="font-size: 2.25rem; font-weight: bold; color: #1f2937; text-align: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid #e5e7eb;">Statut du cahier</h1>
 
         <?php if (!isset($informations) || empty($informations)): ?>
-            <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative mb-6" role="alert">
-                <strong class="font-bold">Attention!</strong>
-                <span class="block sm:inline">Aucun cahier des charges soumis pour le moment.</span>
+            <div style="background-color: #fffbeb; border: 1px solid #fcd34d; color: #b45309; padding: 0.75rem 1rem; border-radius: 0.25rem; position: relative; margin-bottom: 1.5rem;" role="alert">
+                <strong style="font-weight: bold;">Attention!</strong>
+                <span style="display: inline;">Aucun cahier des charges soumis pour le moment.</span>
             </div>
-            <div class="infos bg-gray-50 p-4 rounded-md border border-gray-200">
-                <h2 class="text-xl font-semibold mb-3 text-gray-700">Informations cahier</h2>
-                <div class="space-y-2 text-gray-600">
-                    <p>Nom binôme : <strong class="font-bold">inconnu</strong></p>
-                    <p>Prénom binôme : <strong class="font-bold">inconnu</strong></p>
-                    <p>Intitulé du cahier : <strong class="font-bold">inconnu</strong></p>
+            <div style="background-color: #f9fafb; padding: 1rem; border-radius: 0.375rem; border: 1px solid #e5e7eb;">
+                <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: #374151;">Informations cahier</h2>
+                <div style="line-height: 1.5; color: #4b5563;">
+                    <p>Nom binôme : <strong style="font-weight: bold;">inconnu</strong></p>
+                    <p>Prénom binôme : <strong style="font-weight: bold;">inconnu</strong></p>
+                    <p>Intitulé du cahier : <strong style="font-weight: bold;">inconnu</strong></p>
                 </div>
             </div>
         <?php else: ?>
-            <div class="infos bg-gray-50 p-4 rounded-md border border-gray-200 mb-6">
-                <h2 class="text-xl font-semibold mb-3 text-gray-700">Informations</h2>
-                <div class="space-y-2 text-gray-600">
-                    <p>Nom binôme : <strong class="font-bold"><?= htmlspecialchars($informations['Nom_binome']); ?></strong></p>
-                    <p>Prénom binôme : <strong class="font-bold"><?= htmlspecialchars($informations['Prenom_binome']); ?></strong></p>
-                    <p>Intitulé du cahier : <strong class="font-bold"><?= htmlspecialchars($informations['Intitule']); ?></strong></p>
-                    <p>Statut : <strong class="font-bold 
+            <div style="background-color: #f9fafb; padding: 1rem; border-radius: 0.375rem; border: 1px solid #e5e7eb; margin-bottom: 1.5rem;">
+                <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: #374151;">Informations</h2>
+                <div style="line-height: 1.5; color: #4b5563;">
+                    <p>Nom binôme : <strong style="font-weight: bold;"><?= htmlspecialchars($informations['Nom_binome']); ?></strong></p>
+                    <p>Prénom binôme : <strong style="font-weight: bold;"><?= htmlspecialchars($informations['Prenom_binome']); ?></strong></p>
+                    <p>Intitulé du cahier : <strong style="font-weight: bold;"><?= htmlspecialchars($informations['Intitule']); ?></strong></p>
+                    <p>Statut : <strong style="font-weight: bold; 
                         <?php 
-                        if ($informations['Statut'] === 'Affecté') echo 'text-green-600';
-                        elseif ($informations['Statut'] === 'En attente') echo 'text-yellow-600';
-                        else echo 'text-red-600';
+                        if ($informations['Statut'] === 'Affecté') echo 'color: #059669;';
+                        elseif ($informations['Statut'] === 'En attente') echo 'color: #d97706;';
+                        else echo 'color: #dc2626;';
                         ?>">
                         <?= htmlspecialchars($informations['Statut']); ?>
                     </strong></p>
@@ -36,19 +36,18 @@
         <?php endif; ?>
 
         <?php if (isset($_SESSION['message']['notify']) && !empty($_SESSION['message']['notify'])): ?>
-            <div class="alert mt-6 p-3 rounded-md 
-                <?php echo ($_SESSION['message']['notify']['type'] == 'success') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'; ?>">
+            <div style="margin-top: 1.5rem; padding: 0.75rem; border-radius: 0.375rem; 
+                <?php echo ($_SESSION['message']['notify']['type'] == 'success') ? 'background-color: #d1fae5; color: #065f46;' : 'background-color: #fee2e2; color: #991b1b;'; ?>">
                 <?= htmlspecialchars($_SESSION['message']['notify']['message']); unset($_SESSION['message']['notify']) ?>
             </div>
         <?php endif; ?>
 
-        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
-            <form action="/etudiant/statu/relance" method="POST" class="flex-1">
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">Faire une relance</button>
+        <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;">
+            <form action="/etudiant/statu/relance" method="POST" style="flex: 1;">
+                <button type="submit" style="width: 100%; background-color: #2563eb; color: white; font-weight: bold; padding: 0.5rem 1rem; border-radius: 0.25rem; border: none; cursor: pointer; transition: background-color 0.15s ease-in-out;">Faire une relance</button>
             </form>
-            <form action="/etudiant/statu/supprimer" method="POST" class="flex-1">
-                <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">Supprimer le cahier</button>
+            <form action="/etudiant/statu/supprimer" method="POST" style="flex: 1;">
+                <button type="submit" style="width: 100%; background-color: #dc2626; color: white; font-weight: bold; padding: 0.5rem 1rem; border-radius: 0.25rem; border: none; cursor: pointer; transition: background-color 0.15s ease-in-out;">Supprimer le cahier</button>
             </form>
         </div>
     </div>
-
