@@ -5,17 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etudiant</title>
     <link rel="icon" type="image/x-icon" href="/src/favicon/favicon.ico">
-    <link rel="stylesheet" href="/src/styles/etu_style.css">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-blue': '#243c5a', // Exemple de couleur personnalisée
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    <div class="etudiant">
-        <nav>
-            <ul>                
-                <li><a href="/etudiant" style="margin-right: 15px">Cahier</a></li>
-                <li><a href="/etudiant/statu">Statu cahier</a></li>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <div class="flex flex-1">
+        <nav class="w-64 bg-gray-800 text-white p-4">
+            <ul class="space-y-2">                
+                <li><a href="/etudiant" class="block py-2 px-4 rounded hover:bg-gray-700">Cahier</a></li>
+                <li><a href="/etudiant/statu" class="block py-2 px-4 rounded hover:bg-gray-700">Statut cahier</a></li>
+                <form action="/logout" method="POST" class="pt-4">
+                    <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Déconnexion</button>
+                </form>
             </ul>
-            <form action="/logout" method="POST">
-                <button type="submit">Déconnexion</button>
-            </form>
         </nav>
+        <main class="flex-1 p-8">
+</body>
+</html>
