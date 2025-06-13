@@ -58,7 +58,20 @@
       color: #495057;
     }
 
-    input[type="text"],
+    input[type="text"]{
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      font-size: 0.95rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      background-color: #fff;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+       }
+    
     input[type="email"],
     input[type="password"],
     select {

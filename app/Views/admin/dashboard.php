@@ -1,4 +1,3 @@
-<?php include __DIR__ . '/../layouts/adminHeader.php'; ?>
 
 <main style="display: flex; min-height: 100vh; background-color: #f3f4f6;">
     <nav style="width: 16rem; background-color: #1f2937; color: white; padding: 1rem;">
@@ -69,4 +68,4 @@
             </table>
         </div>
     </div>
-</main>
+</main> 
